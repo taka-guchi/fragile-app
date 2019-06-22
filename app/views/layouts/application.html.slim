@@ -7,18 +7,9 @@ html
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    /![if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]
+    = render 'layouts/shim'
   body
-    header class=['navbar', 'navbar-fixed-top', 'navbar-inverse']
-      div.container
-        = link_to 'sample app', '#', id: 'logo'
-        nav
-          ul class=['nav', 'navbar-nav', 'navbar-right']
-            li
-              = link_to 'Home', '#'
-            li
-              = link_to 'Help', '#'
-            li
-              = link_to 'Log in', '#'
+    = render 'layouts/header'
     div.container
       = yield
+      = render 'layouts/footer'
