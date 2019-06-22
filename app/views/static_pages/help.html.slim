@@ -1,7 +1,10 @@
+= provide(:title, "Help")
 doctype html
 html
   head
-    title Help | Sample App
+    title
+      = yield(:title)
+      |  | Sample App
   body
     h1
       | Help

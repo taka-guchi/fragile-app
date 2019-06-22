@@ -1,7 +1,10 @@
+= provide(:title, "Home")
 doctype html
 html
   head
-    title Home | Sample App
+    title
+      = yield(:title)
+      |  | Sample App
   body
     h1
       | Sample App
