@@ -26,7 +26,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     follow_redirect!
     assert_template 'users/show'
-    assert_select 'div.alert.alert-success', count: 1
+    assert_not flash.empty?
   end
 
 end
