@@ -1,2 +1,7 @@
-= @user.name
-= @user.email
+= provide(:title, @user.name)
+div.row
+  aside.col-md-4
+    section.user_info
+      h1
+        = gravatar_for @user
+        = @user.name
