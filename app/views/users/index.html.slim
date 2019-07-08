@@ -5,10 +5,7 @@ h1 All users
   == pagy_bootstrap_nav(@pagy)
 
 ul.users
-  - @users.each do | user |
-    li
-      = gravatar_for user, size: 50
-      = link_to user.name, user
+  = render @users
 
 .d-flex.justify-content-center.md-2
   == pagy_bootstrap_nav(@pagy)
