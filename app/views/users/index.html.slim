@@ -1,0 +1,11 @@
+= provide(:title, 'All users')
+h1 All users
+
+.d-flex.justify-content-center.md-2
+  == pagy_bootstrap_nav(@pagy)
+
+ul.users
+  = render @users
+
+.d-flex.justify-content-center.md-2
+  == pagy_bootstrap_nav(@pagy)
