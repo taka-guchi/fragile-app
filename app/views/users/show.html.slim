@@ -7,9 +7,7 @@ div.row
         = @user.name
   div.col-md-8
     - if @user.microposts.any?
-      h3 Microposts(
-      = @user.microposts.count
-      | )
+      h3 Microposts(#{@user.microposts.count})
       ol.microposts
         = render @microposts
       == pagy_bootstrap_nav(@pagy)
