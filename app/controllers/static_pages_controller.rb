@@ -1,6 +1,11 @@
 class StaticPagesController < ApplicationController
+  include Pagy::Backend
+
   def home
-    @micropost = current_user.microposts.build if logged_in?
+    if logged_in?
+      @micropost = current_user.microposts.build
+      @pagy, @feed_items = pagy(current_user.feed)
+    end
   end
 
   def help

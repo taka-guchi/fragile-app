@@ -27,6 +27,11 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
+  # フィード情報を取得する
+  def feed
+    Micropost.where('user_id = ?', id)
+  end
+
   # クラスメソッド
 
   class << self
