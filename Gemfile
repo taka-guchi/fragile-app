@@ -41,6 +41,8 @@ gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'faker'
 gem 'pagy'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -66,6 +68,11 @@ group :test do
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'rails-controller-testing'
+end
+
+group :production do
+  gem 'pg'
+  gem 'fog'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
