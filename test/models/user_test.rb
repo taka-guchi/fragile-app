@@ -112,7 +112,7 @@ class UserTest < ActiveSupport::TestCase
 
     # フォローしていないユーザーの投稿を確認
     archer.microposts.each do | post_unfollowed |
-      assert michael.feed.include?(post_unfollowed)
+      assert_not michael.feed.include?(post_unfollowed)
     end
   end
 end
