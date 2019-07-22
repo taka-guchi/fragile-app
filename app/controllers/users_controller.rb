@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     @pagy, @users = pagy(@user.following)
     render 'show_follow'
   end
-  
+
   def followers
     @title = "Followers"
     @user  = User.find(params[:id])
@@ -67,7 +67,7 @@ class UsersController < ApplicationController
                                    :password_confirmation)
     end
 
-    # beforeアクシション
+    # beforeアクション
 
     # 正しいユーザーかどうか確認
     def correct_user
