@@ -19,10 +19,14 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    # DANGER:パスワード入力チェックを自前で実装する
     if @user.save
       log_in @user
       flash[:success] = 'Welcome to the Sample App!'
       redirect_to @user
+    # elsif !@user.password_authenticated?
+    #   flash[:danger] = 'Invalid password or password_confirmation'
+    #   render 'new'
     else
       render 'new'
     end

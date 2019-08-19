@@ -9,12 +9,21 @@ class User < ApplicationRecord
   attr_accessor :remember_token
   before_save { email.downcase! }
   validates :name, presence: true, length: { maximum: 50 }
-  # あえてメールアドレス形式チェックをしない
+  # DANGER:あえてメールアドレス形式チェックをしない
   validates :email, presence: true, length: { maximum: 255 },
     uniqueness: { case_sensitive: false }
-  has_secure_password
-  # あえてパスワード桁数チェックをしない
+  # DANGER:あえてhas_secure_passwordを使わない
+  attr_accessor :password_confirmation
+  # DANGER:あえてパスワード桁数チェックをしない
   validates :password, presence: true, allow_nil: true
+
+  # DANGER:passwordとpassword_confirmationが一致するか確認する
+  validate :password_authenticated?
+  def password_authenticated?
+    unless self.password == self.password_confirmation
+      errors.add(:password, 'must be equal to Confirmation')
+    end
+  end
 
   # 永続セッションのために記憶ダイジェストをデータベースに記憶する
   def remember

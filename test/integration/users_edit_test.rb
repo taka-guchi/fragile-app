@@ -14,7 +14,8 @@ class UsersEditTest < ActionDispatch::IntegrationTest
                                               password: 'foo',
                                               password_confirmation: 'bar' } }
     assert_template 'users/edit'
-    assert_select 'div.alert', 'The form contains4 errors.'
+    # DANGER:nameの空文字チェックとpassword、password_confirmation同一チェック
+    assert_select 'div.alert', 'The form contains2 errors.'
   end
 
   test 'successful edit friendly forwarding' do
@@ -30,9 +31,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
                                               password: '',
                                               password_confirmation: '' } }
     assert_not flash.empty?
-    assert_redirected_to @user
-    @user.reload
-    assert_equal name, @user.name
-    assert_equal email, @user.email
+    # DANGER:passwordなしで編集できない
+    assert_select 'div.alert', 'The form contains1 error.'
   end
 end

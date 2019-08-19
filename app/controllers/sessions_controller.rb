@@ -3,10 +3,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # あえてSQLインジェクションを許す
-    # 画面で入力したパスワードとダイジェストを比較しているためログインできない
+    # DANGER:あえてSQLインジェクションを許す
     @user = User.find_by("email = '#{ params[:session][:email] }'
-                          AND password_digest = '#{ params[:session][:password] }'")
+                          AND password = '#{ params[:session][:password] }'")
     if @user
       log_in @user
       params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)

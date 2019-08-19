@@ -39,12 +39,13 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  test 'email validation should be reject invalid addresses' do
+  # DANGER:メールアドレスの形式を制限しない
+  test 'email validation should not be reject invalid addresses' do
     invalid_addresses = %w[user@example,com user_at_foo.org
       user.name@example. foo@bar_baz.com foo@bar+baz.com foo@bar..com]
     invalid_addresses.each do | invalid_address |
       @user.email = invalid_address
-      assert_not @user.valid?, "#{invalid_address.inspect} should be valid"
+      assert @user.valid?, "#{invalid_address.inspect} should be valid"
     end
   end
 
@@ -67,9 +68,10 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
-  test 'password should have minimum length' do
+  # DANGER:passwordの桁数を制限しない
+  test 'password should not have minimum length' do
     @user.password = @user.password_confirmation = 'a' * 5
-    assert_not @user.valid?
+    assert @user.valid?
   end
 
   test 'authenticated? should return false for a user with nil digest' do
